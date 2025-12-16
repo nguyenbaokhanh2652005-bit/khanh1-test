@@ -1,0 +1,942 @@
+/* 1) Reset cơ bản: tránh lệch layout do margin/padding mặc định */
+
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: system-ui, Arial, sans-serif;
+}
+
+
+/* 2) Container: canh lề như website thật (giống ảnh: có khoảng trống 2 bên) */
+
+.container {
+    width: min(1200px, calc(100% - 72px));
+    margin: 0 auto;
+}
+
+
+/* 3) Hero: full màn hình + làm "mốc" để absolute bám vào */
+
+.hero {
+    position: relative;
+    /* quan trọng: con absolute sẽ bám theo hero */
+    height: 100vh;
+    overflow: hidden;
+    color: #fff;
+}
+
+
+/* 4) Video nền: phủ kín */
+
+.hero__bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* phủ kín không méo */
+    z-index: 1;
+    background: #0b1220;
+    /* dự phòng nếu chưa có video */
+}
+
+
+/* 5) Overlay: tối nhẹ để chữ nổi (ảnh cũng tối kiểu vậy) */
+
+.hero__overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, .35);
+    z-index: 2;
+}
+
+
+/* 6) Header: nằm trên overlay */
+
+.header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 5;
+    /* cao hơn overlay */
+    padding: 22px 0;
+}
+
+
+/* 7) Header inner: dùng grid 3 cột (trái - giữa - phải) cho chắc */
+
+.header__inner {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: 24px;
+}
+
+
+/* 8) Brand trái */
+
+.brand {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+}
+
+.brand__logo {
+    letter-spacing: .28em;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.brand__country {
+    opacity: .85;
+    font-size: 12px;
+    letter-spacing: .12em;
+}
+
+
+/* 9) Nav giữa: giống ảnh là chữ in hoa, giãn chữ */
+
+.nav {
+    display: flex;
+    justify-content: center;
+    gap: 36px;
+}
+
+.nav a {
+    color: #fff;
+    text-decoration: none;
+    letter-spacing: .18em;
+    font-size: 14px;
+    opacity: .95;
+}
+
+
+/* 10) Header phải: language + burger */
+
+.header__right {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.lang,
+.burger {
+    color: #fff;
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, .25);
+    border-radius: 999px;
+    padding: 8px 12px;
+    cursor: pointer;
+}
+
+.burger {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+}
+
+
+/* 11) Hero content: nằm trên overlay */
+
+.hero__content {
+    position: relative;
+    height: 100%;
+    z-index: 4;
+    /* trên overlay */
+}
+
+
+/* 12) Countries: ghim trái + canh giữa theo chiều cao */
+
+.countries {
+    position: absolute;
+    left: 0;
+    /* bám theo container, nên left=0 là đúng lề */
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    font-family: Georgia, "Times New Roman", serif;
+}
+
+.countries__item {
+    text-decoration: none;
+    color: rgba(255, 255, 255, .45);
+    /* mờ như ảnh */
+    font-size: 65px;
+    line-height: 1;
+}
+
+.countries__item.is-active {
+    color: #fff;
+}
+
+
+/* 13) Badge: ghim góc dưới phải (đúng như ảnh) */
+
+.badge {
+    position: absolute;
+    right: 0;
+    bottom: 44px;
+    width: 520px;
+    max-width: min(520px, 100%);
+    background: #0b4aa6;
+    padding: 18px 20px;
+    border-radius: 6px;
+    display: grid;
+    grid-template-columns: 160px 1fr;
+    gap: 16px;
+}
+
+.badge__title {
+    font-size: 30px;
+    font-weight: 800;
+    line-height: 1;
+}
+
+.badge__sub {
+    margin-top: 8px;
+    opacity: .9;
+    font-size: 13px;
+}
+
+.badge__text {
+    opacity: .95;
+    font-size: 13px;
+    line-height: 1.4;
+}
+
+.badge__link {
+    display: inline-block;
+    margin-top: 8px;
+    color: #fff;
+    opacity: .9;
+}
+
+
+/* 14) Responsive: mobile thì ẩn nav giữa giống kiểu hamburger */
+
+@media (max-width: 820px) {
+    .container {
+        width: calc(100% - 32px);
+    }
+    .nav {
+        display: none;
+    }
+    .countries__item {
+        font-size: 44px;
+    }
+    .badge {
+        left: 0;
+        right: 0;
+        width: auto;
+        grid-template-columns: 140px 1fr;
+        bottom: 16px;
+    }
+}
+
+
+/* =========================================================
+   DELIVERY PAGE (dán xuống CUỐI style.css)
+   Mọi thứ đều có .page--delivery để không ảnh hưởng index
+========================================================= */
+
+.page--delivery {
+    background: #e8e1d2;
+    color: #1b1b1b;
+}
+
+
+/* --- Utils nhỏ --- */
+
+.page--delivery .container {
+    width: min(1200px, calc(100% - 48px));
+    margin: 0 auto;
+}
+
+.page--delivery a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.page--delivery img {
+    max-width: 100%;
+    display: block;
+}
+
+
+/* =========================================================
+   1) HEADER (thanh xanh)
+========================================================= */
+
+.page--delivery .header {
+    position: sticky;
+    /* giữ trên cùng khi scroll */
+    top: 0;
+    z-index: 1000;
+    background: #27345a;
+    padding: 0;
+    /* khác trang chủ */
+    color: #fff;
+}
+
+.page--delivery .header__inner {
+    height: 64px;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: 18px;
+}
+
+.page--delivery .header__brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    color: #fff;
+}
+
+.page--delivery .brand__text {
+    font-weight: 800;
+    letter-spacing: .16em;
+    font-size: 14px;
+    white-space: nowrap;
+}
+
+
+/* Search */
+
+.page--delivery .header__search {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: #fff;
+    color: #222;
+    border-radius: 999px;
+    padding: 8px 14px;
+    max-width: 560px;
+    width: 100%;
+    justify-self: center;
+    /* canh giữa trong grid */
+}
+
+.page--delivery .search__icon {
+    opacity: .75;
+    font-size: 14px;
+}
+
+.page--delivery .search__input {
+    border: 0;
+    outline: 0;
+    background: transparent;
+    width: 100%;
+    font-size: 14px;
+}
+
+
+/* Actions */
+
+.page--delivery .header__actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.page--delivery .action {
+    border: 1px solid rgba(255, 255, 255, .35);
+    background: transparent;
+    color: #fff;
+    height: 36px;
+    width: 36px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.page--delivery .action--lang {
+    width: auto;
+    padding: 0 12px;
+    border-radius: 999px;
+    gap: 8px;
+}
+
+.page--delivery .action__text {
+    font-size: 13px;
+    opacity: .95;
+}
+
+
+/* =========================================================
+   2) SUBBAR (link nhỏ + hotline)
+========================================================= */
+
+.page--delivery .subbar {
+    background: #fff;
+    border-bottom: 1px solid rgba(0, 0, 0, .08);
+}
+
+.page--delivery .subbar__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+    padding: 10px 0;
+    font-size: 13px;
+}
+
+.page--delivery .subbar__links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    color: rgba(0, 0, 0, .7);
+}
+
+.page--delivery .subbar__link {
+    color: rgba(0, 0, 0, .7);
+}
+
+.page--delivery .subbar__link:hover {
+    text-decoration: underline;
+}
+
+.page--delivery .subbar__hotline {
+    white-space: nowrap;
+    color: rgba(0, 0, 0, .7);
+}
+
+.page--delivery .subbar__hotline-number {
+    color: #e53935;
+    font-weight: 800;
+}
+
+
+/* =========================================================
+   3) MAIN spacing
+========================================================= */
+
+.page--delivery .main {
+    padding: 22px 0 0;
+}
+
+
+/* =========================================================
+   4) HERO (slider + welcome card)
+========================================================= */
+
+.page--delivery .hero {
+    padding: 22px 0 26px;
+}
+
+.page--delivery .hero__grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 22px;
+    align-items: stretch;
+}
+
+
+/* Slider */
+
+.page--delivery .slider__viewport {
+    border-radius: 16px;
+    overflow: hidden;
+    background: rgba(255, 255, 255, .45);
+    border: 1px solid rgba(0, 0, 0, .06);
+}
+
+.page--delivery .slider__track {
+    display: flex;
+    /* nếu bạn làm slider chạy thật: thêm transform bằng JS */
+}
+
+.page--delivery .slider__item {
+    min-width: 100%;
+}
+
+.page--delivery .banner__media {
+    aspect-ratio: 16 / 7;
+    background: rgba(0, 0, 0, .06);
+}
+
+.page--delivery .banner__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+
+/* Dots */
+
+.page--delivery .slider__dots {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    padding: 10px 0 0;
+}
+
+.page--delivery .dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 999px;
+    background: rgba(39, 52, 90, .25);
+    border: 0;
+    cursor: pointer;
+}
+
+.page--delivery .dot--active {
+    background: #27345a;
+}
+
+
+/* Welcome card */
+
+.page--delivery .welcome {
+    background: #fff;
+    border-radius: 16px;
+    border: 1px solid rgba(0, 0, 0, .06);
+    padding: 18px;
+}
+
+.page--delivery .welcome__title {
+    margin: 0 0 10px;
+    font-size: 18px;
+    line-height: 1.3;
+    color: #111;
+}
+
+.page--delivery .welcome__quote {
+    margin: 0;
+    color: rgba(0, 0, 0, .65);
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+.page--delivery .welcome__cta {
+    margin-top: 14px;
+    width: 100%;
+    border: 0;
+    cursor: pointer;
+    background: #27345a;
+    color: #fff;
+    border-radius: 999px;
+    padding: 12px 14px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.page--delivery .cta__icon {
+    font-size: 16px;
+}
+
+.page--delivery .cta__text {
+    font-weight: 700;
+    font-size: 13px;
+}
+
+
+/* =========================================================
+   5) SECTION base
+========================================================= */
+
+.page--delivery .section {
+    padding: 14px 0 24px;
+}
+
+.page--delivery .section__header {
+    display: flex;
+    align-items: baseline;
+    justify-content: flex-start;
+    gap: 12px;
+    margin-bottom: 12px;
+}
+
+.page--delivery .section__header--split {
+    justify-content: space-between;
+    align-items: center;
+}
+
+.page--delivery .section__title {
+    margin: 0;
+    font-size: 22px;
+    color: #111;
+}
+
+.page--delivery .section__link {
+    color: rgba(0, 0, 0, .65);
+    font-size: 14px;
+}
+
+.page--delivery .section__link:hover {
+    text-decoration: underline;
+}
+
+
+/* =========================================================
+   6) CATEGORY ROW (menu)
+========================================================= */
+
+.page--delivery .category-row__list {
+    display: flex;
+    gap: 14px;
+    overflow-x: auto;
+    padding-bottom: 8px;
+    scroll-snap-type: x mandatory;
+}
+
+.page--delivery .category-row__list::-webkit-scrollbar {
+    height: 8px;
+}
+
+.page--delivery .category-row__list::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, .12);
+    border-radius: 999px;
+}
+
+.page--delivery .category-card {
+    scroll-snap-align: start;
+    min-width: 130px;
+    background: #fff;
+    border: 1px solid rgba(0, 0, 0, .06);
+    border-radius: 14px;
+    padding: 12px;
+    text-align: center;
+}
+
+.page--delivery .category-card__img {
+    width: 100%;
+    height: 78px;
+    object-fit: cover;
+    border-radius: 10px;
+    background: rgba(0, 0, 0, .06);
+}
+
+.page--delivery .category-card__label {
+    margin-top: 10px;
+    font-size: 13px;
+    font-weight: 700;
+    color: rgba(0, 0, 0, .75);
+}
+
+.page--delivery .category-card--active {
+    border: 2px solid #27345a;
+}
+
+
+/* =========================================================
+   7) POPULAR - product cards
+========================================================= */
+
+.page--delivery .product-row__list {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 18px;
+}
+
+
+/* Card */
+
+.page--delivery .product-card {
+    background: #fff;
+    border: 1px solid rgba(0, 0, 0, .06);
+    border-radius: 16px;
+    padding: 14px;
+    display: flex;
+    flex-direction: column;
+    min-height: 320px;
+    /* giúp các card đều nhau */
+}
+
+.page--delivery .product-card__tag {
+    align-self: flex-start;
+    font-size: 11px;
+    font-weight: 800;
+    color: #fff;
+    background: #27345a;
+    border-radius: 999px;
+    padding: 4px 10px;
+    margin-bottom: 10px;
+}
+
+.page--delivery .product-card__image {
+    border-radius: 14px;
+    overflow: hidden;
+    background: rgba(0, 0, 0, .06);
+}
+
+.page--delivery .product-card__image img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+}
+
+.page--delivery .product-card__name {
+    margin: 12px 0 8px;
+    font-size: 15px;
+    line-height: 1.35;
+    color: #111;
+    min-height: 40px;
+    /* hạn chế tên dài làm lệch */
+}
+
+.page--delivery .product-card__options {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 10px;
+}
+
+.page--delivery .option__badge {
+    font-size: 11px;
+    color: rgba(0, 0, 0, .65);
+    border: 1px solid rgba(0, 0, 0, .12);
+    padding: 4px 8px;
+    border-radius: 999px;
+}
+
+.page--delivery .product-card__actions {
+    margin-top: auto;
+    /* đẩy cụm nút xuống đáy */
+    display: flex;
+    justify-content: center;
+}
+
+.page--delivery .btn--add {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    border: 2px solid #27345a;
+    background: #fff;
+    color: #27345a;
+    font-size: 22px;
+    font-weight: 900;
+    cursor: pointer;
+    line-height: 1;
+}
+
+.page--delivery .btn--add:hover {
+    background: rgba(39, 52, 90, .06);
+}
+
+.page--delivery .product-card__price {
+    margin-top: 10px;
+    text-align: center;
+    font-weight: 900;
+    color: rgba(0, 0, 0, .75);
+}
+
+
+/* =========================================================
+   8) SURVEY
+========================================================= */
+
+.page--delivery .section--survey {
+    padding-bottom: 42px;
+}
+
+.page--delivery .survey-card {
+    background: #fff;
+    border: 1px solid rgba(0, 0, 0, .06);
+    border-radius: 16px;
+    padding: 18px;
+    max-width: 520px;
+}
+
+.page--delivery .survey-card__title {
+    margin: 0;
+    font-size: 16px;
+    color: #111;
+}
+
+.page--delivery .survey-card__faces {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    margin-top: 12px;
+}
+
+.page--delivery .face-btn {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    border: 1px solid rgba(0, 0, 0, .10);
+    background: #fff;
+    font-size: 22px;
+    cursor: pointer;
+}
+
+.page--delivery .face-btn:hover {
+    background: rgba(0, 0, 0, .04);
+}
+
+
+/* =========================================================
+   9) FOOTER
+========================================================= */
+
+.page--delivery .footer {
+    background: #fff;
+    border-top: 1px solid rgba(0, 0, 0, .08);
+    margin-top: 14px;
+}
+
+.page--delivery .footer__grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 22px;
+    padding: 28px 0;
+}
+
+.page--delivery .footer__logo {
+    font-weight: 900;
+    letter-spacing: .08em;
+}
+
+.page--delivery .footer__company {
+    margin-top: 8px;
+    color: rgba(0, 0, 0, .65);
+    font-size: 13px;
+}
+
+.page--delivery .footer__title {
+    font-weight: 900;
+    margin: 0 0 10px;
+    color: #111;
+}
+
+.page--delivery .footer__title--small {
+    margin-top: 14px;
+    font-size: 13px;
+}
+
+.page--delivery .footer__text {
+    color: rgba(0, 0, 0, .65);
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+.page--delivery .footer__block {
+    margin-top: 14px;
+}
+
+.page--delivery .footer__links {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.page--delivery .footer__links a {
+    color: rgba(0, 0, 0, .65);
+    font-size: 13px;
+}
+
+.page--delivery .footer__links a:hover {
+    text-decoration: underline;
+}
+
+.page--delivery .subscribe {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.page--delivery .subscribe__input {
+    flex: 1;
+    padding: 10px 12px;
+    border-radius: 10px;
+    border: 1px solid rgba(0, 0, 0, .16);
+    outline: none;
+}
+
+.page--delivery .subscribe__btn {
+    padding: 10px 12px;
+    border-radius: 10px;
+    border: 0;
+    background: #27345a;
+    color: #fff;
+    font-weight: 800;
+    cursor: pointer;
+}
+
+.page--delivery .footer__social {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.page--delivery .footer__social a {
+    width: 34px;
+    height: 34px;
+    border-radius: 10px;
+    border: 1px solid rgba(0, 0, 0, .12);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(0, 0, 0, .65);
+}
+
+.page--delivery .footer__bottom {
+    border-top: 1px solid rgba(0, 0, 0, .08);
+    padding: 12px 0;
+}
+
+.page--delivery .footer__bottom-inner {
+    text-align: center;
+    color: rgba(0, 0, 0, .6);
+    font-size: 13px;
+}
+
+
+/* =========================================================
+   10) RESPONSIVE
+========================================================= */
+
+@media (max-width: 980px) {
+    .page--delivery .hero__grid {
+        grid-template-columns: 1fr;
+    }
+    .page--delivery .header__search {
+        max-width: none;
+    }
+    .page--delivery .product-row__list {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    .page--delivery .footer__grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 640px) {
+    .page--delivery .container {
+        width: calc(100% - 32px);
+    }
+    .page--delivery .action__text {
+        display: none;
+        /* gọn header trên mobile */
+    }
+    .page--delivery .subbar__inner {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+    .page--delivery .product-row__list {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .page--delivery .footer__grid {
+        grid-template-columns: 1fr;
+    }
+    .page--delivery .banner__media {
+        aspect-ratio: 16 / 9;
+    }
+}

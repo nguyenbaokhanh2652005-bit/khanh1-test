@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nha hang</title>
+    <link rel="stylesheet" href="../css/style.css">
+
+
+</head>
+
+<body class="page page--delivery">
+    <!-- =========================
+       HEADER (thanh xanh trên cùng)
+  ========================== -->
+    <header class="header" id="header">
+        <div class="container header__inner">
+            <!-- Left: Brand -->
+            <a class="header__brand brand" href="index.html">
+                <span class="brand__text">HẢI SẢN PHỐ NƯỚNG</span>
+            </a>
+
+            <!-- Center: Search -->
+            <div class="header__search search">
+                <span class="search__icon" aria-hidden="true">🔍</span>
+                <input class="search__input" type="search" placeholder="Tìm món..." />
+            </div>
+
+            <!-- Right: Actions -->
+            <div class="header__actions">
+                <button class="action action--account" type="button" aria-label="Tài khoản">👤</button>
+
+                <button class="action action--lang" type="button" aria-label="Ngôn ngữ">
+          🌐 <span class="action__text">Tiếng Việt</span>
+        </button>
+
+                <button class="action action--cart" type="button" aria-label="Giỏ hàng">🛒</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- =========================
+       SUBBAR (link nhỏ + hotline)
+  ========================== -->
+    <div class="subbar" id="subbar">
+        <div class="container subbar__inner">
+            <nav class="subbar__links" aria-label="Liên kết nhanh">
+                <a href="#" class="subbar__link">Voucher</a>
+                <a href="#" class="subbar__link">Chính sách giao hàng</a>
+                <a href="#" class="subbar__link">Đổi/hoàn tiền</a>
+            </nav>
+
+            <div class="subbar__hotline">
+                Hotline: <span class="subbar__hotline-number">1900 0000</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- =========================
+       MAIN
+  ========================== -->
+    <main class="main delivery" id="main">
+        <!-- =========================
+         HERO: Slider + Welcome card
+    ========================== -->
+        <section class="hero" id="hero">
+            <div class="container hero__grid">
+                <!-- Left: Slider -->
+                <div class="hero__slider slider" aria-label="Banner">
+                    <div class="slider__viewport">
+                        <div class="slider__track">
+                            <!-- Slide item -->
+                            <article class="slider__item banner">
+                                <div class="banner__media">
+                                    <!-- Thay ảnh banner ở đây -->
+                                    <img class="banner__img" src="../img/bannerngang.jpg" alt="Banner 1" />
+                                </div>
+                            </article>
+
+                            <article class="slider__item banner">
+                                <div class="banner__media">
+                                    <img class="banner__img" src="../img/bannerngang2.jpg" alt="Banner 2" />
+                                </div>
+                            </article>
+
+                            <article class="slider__item banner">
+                                <div class="banner__media">
+                                    <img class="banner__img" src="../img/bannerngang3.jpg" alt="Banner 3" />
+                                </div>
+                            </article>
+                        </div>
+                    </div>
+
+                    <!-- Dots -->
+                    <div class="slider__dots" aria-label="Chọn banner">
+                        <button class="dot dot--active" type="button" aria-label="Banner 1"></button>
+                        <button class="dot" type="button" aria-label="Banner 2"></button>
+                        <button class="dot" type="button" aria-label="Banner 3"></button>
+                    </div>
+                </div>
+
+                <!-- Right: Welcome card -->
+                <aside class="hero__welcome-card welcome" aria-label="Thông tin đặt món">
+                    <h2 class="welcome__title">Chào mừng bạn đến với Hải Sản Phố Nướng</h2>
+
+                    <p class="welcome__quote">
+                        “Tươi mỗi ngày – Nướng tại chỗ – Lên món nhanh.”
+                    </p>
+
+                    <button class="welcome__cta cta" type="button">
+            <span class="cta__icon" aria-hidden="true">📍</span>
+            <span class="cta__text">Nhập địa chỉ để đặt giao hàng</span>
+          </button>
+                </aside>
+            </div>
+        </section>
+
+        <!-- =========================
+         MENU CATEGORIES (hàng chip/thẻ danh mục)
+    ========================== -->
+        <section class="section section--menu" id="menu">
+            <div class="container">
+                <div class="section__header">
+                    <h2 class="section__title">Menu</h2>
+                </div>
+
+                <div class="category-row">
+                    <div class="category-row__list">
+                        <!-- Category card -->
+                        <a class="category-card category-card--active" href="#cat-combo">
+                            <img class="category-card__img" src="../img/cuamuoi.jpg" alt="Combo" />
+                            <div class="category-card__label">Combo</div>
+                        </a>
+
+                        <a class="category-card" href="#cat-hai-san">
+                            <img class="category-card__img" src="../img/ocbu.jpg" alt="Hải sản" />
+                            <div class="category-card__label">Hải sản</div>
+                        </a>
+
+                        <a class="category-card" href="#cat-nuong">
+                            <img class="category-card__img" src="../img/tomnuong.png" alt="Phố nướng" />
+                            <div class="category-card__label">Phố nướng</div>
+                        </a>
+
+                        <a class="category-card" href="#cat-mon-kem">
+                            <img class="category-card__img" src="../img/cuahoangde1.png" alt="Món kèm" />
+                            <div class="category-card__label">Món kèm</div>
+                        </a>
+
+                        <a class="category-card" href="#cat-do-uong">
+                            <img class="category-card__img" src="../img/combolau.jpg" alt="Đồ uống" />
+                            <div class="category-card__label">Đồ uống</div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- =========================
+         POPULAR (hàng sản phẩm)
+    ========================== -->
+        <section class="section section--popular" id="popular">
+            <div class="container">
+                <div class="section__header section__header--split">
+                    <h2 class="section__title">Popular</h2>
+                    <a class="section__link" href="#">View all &gt;&gt;</a>
+                </div>
+
+                <div class="product-row">
+                    <div class="product-row__list">
+                        <!-- PRODUCT CARD 1 -->
+                        <article class="product-card">
+                            <div class="product-card__tag">Must-try</div>
+
+                            <div class="product-card__image">
+                                <img src="../img/baongu.png" alt="Tôm nướng bơ tỏi" />
+                            </div>
+
+                            <h3 class="product-card__name">Tôm nướng bơ tỏi</h3>
+
+                            <div class="product-card__options">
+                                <!-- để trống cũng được; dùng khi có option như Half/Size -->
+                            </div>
+
+                            <div class="product-card__actions">
+                                <button class="btn btn--add" type="button" aria-label="Thêm tôm nướng bơ tỏi">+</button>
+                            </div>
+
+                            <div class="product-card__price">189,000 vnd</div>
+                        </article>
+
+                        <!-- PRODUCT CARD 2 -->
+                        <article class="product-card">
+                            <div class="product-card__tag">Must-try</div>
+
+                            <div class="product-card__image">
+                                <img src="../img/baongu.png" alt="Mực nướng sa tế" />
+                            </div>
+
+                            <h3 class="product-card__name">Mực nướng sa tế</h3>
+
+                            <div class="product-card__options">
+                                <span class="option__badge">Cay vừa</span>
+                            </div>
+
+                            <div class="product-card__actions">
+                                <button class="btn btn--add" type="button" aria-label="Thêm mực nướng sa tế">+</button>
+                            </div>
+
+                            <div class="product-card__price">159,000 vnd</div>
+                        </article>
+
+                        <!-- PRODUCT CARD 3 -->
+                        <article class="product-card">
+                            <div class="product-card__tag">Must-try</div>
+
+                            <div class="product-card__image">
+                                <img src="../img/baongu.png" alt="Hàu nướng phô mai" />
+                            </div>
+
+                            <h3 class="product-card__name">Hàu nướng phô mai</h3>
+
+                            <div class="product-card__options">
+                                <span class="option__badge">6 con</span>
+                            </div>
+
+                            <div class="product-card__actions">
+                                <button class="btn btn--add" type="button" aria-label="Thêm hàu nướng phô mai">+</button>
+                            </div>
+
+                            <div class="product-card__price">129,000 vnd</div>
+                        </article>
+
+                        <!-- PRODUCT CARD 4 -->
+                        <article class="product-card">
+                            <div class="product-card__tag">Must-try</div>
+
+                            <div class="product-card__image">
+                                <img src="../img/baongu.png" alt="Sò điệp nướng mỡ hành" />
+                            </div>
+
+                            <h3 class="product-card__name">Sò điệp nướng mỡ hành</h3>
+
+                            <div class="product-card__options">
+                                <span class="option__badge">8 con</span>
+                            </div>
+
+                            <div class="product-card__actions">
+                                <button class="btn btn--add" type="button" aria-label="Thêm sò điệp nướng mỡ hành">+</button>
+                            </div>
+
+                            <div class="product-card__price">149,000 vnd</div>
+                        </article>
+
+                        <!-- PRODUCT CARD 5 -->
+                        <article class="product-card">
+                            <div class="product-card__tag">Must-try</div>
+
+                            <div class="product-card__image">
+                                <img src="../img/baongu.png" alt="Combo biển nướng" />
+                            </div>
+
+                            <h3 class="product-card__name">Combo biển nướng</h3>
+
+                            <div class="product-card__options">
+                                <span class="option__badge">2-3 người</span>
+                            </div>
+
+                            <div class="product-card__actions">
+                                <button class="btn btn--add" type="button" aria-label="Thêm combo biển nướng">+</button>
+                            </div>
+
+                            <div class="product-card__price">399,000 vnd</div>
+                        </article>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- =========================
+         SURVEY (hộp đánh giá)
+    ========================== -->
+        <section class="section section--survey" id="survey">
+            <div class="container">
+                <div class="survey-card">
+                    <h3 class="survey-card__title">Trải nghiệm của bạn trên website thế nào?</h3>
+
+                    <div class="survey-card__faces" role="group" aria-label="Đánh giá">
+                        <button class="face-btn" type="button" aria-label="Rất tệ">🙁</button>
+                        <button class="face-btn" type="button" aria-label="Tệ">😕</button>
+                        <button class="face-btn" type="button" aria-label="Bình thường">😐</button>
+                        <button class="face-btn" type="button" aria-label="Tốt">🙂</button>
+                        <button class="face-btn" type="button" aria-label="Rất tốt">😄</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- =========================
+       FOOTER (4 cột + bottom bar)
+  ========================== -->
+    <footer class="footer" id="footer">
+        <div class="container footer__grid">
+            <!-- Col 1 -->
+            <div class="footer__col footer__col--brand">
+                <div class="footer__logo">HẢI SẢN PHỐ NƯỚNG</div>
+                <div class="footer__company">Cửa hàng hải sản nướng</div>
+
+                <div class="footer__block">
+                    <div class="footer__title">Địa chỉ</div>
+                    <div class="footer__text">Số 123, Phố Nướng, TP.HCM</div>
+                </div>
+
+                <div class="footer__block">
+                    <div class="footer__title">Hỗ trợ đặt hàng</div>
+                    <div class="footer__text">Hotline: 1900 0000</div>
+                </div>
+            </div>
+
+            <!-- Col 2 -->
+            <div class="footer__col footer__col--cert">
+                <div class="footer__title">Chứng nhận / An toàn thực phẩm</div>
+                <div class="footer__text">
+                    Thêm nội dung chứng nhận (nếu có). Nếu chưa có, bạn có thể để phần này là “Thông tin sẽ cập nhật”.
+                </div>
+            </div>
+
+            <!-- Col 3 -->
+            <div class="footer__col footer__col--terms">
+                <div class="footer__title">Điều khoản</div>
+                <nav class="footer__links" aria-label="Điều khoản và chính sách">
+                    <a href="#">Điều khoản chung</a>
+                    <a href="#">Chính sách thanh toán</a>
+                    <a href="#">Chính sách giao hàng</a>
+                    <a href="#">Đổi/hoàn tiền</a>
+                </nav>
+            </div>
+
+            <!-- Col 4 -->
+            <div class="footer__col footer__col--subscribe">
+                <div class="footer__title">Nhận cập nhật mới</div>
+
+                <form class="subscribe" action="#" method="post">
+                    <input class="subscribe__input" type="email" placeholder="Nhập email..." />
+                    <button class="subscribe__btn" type="submit">Subscribe</button>
+                </form>
+
+                <div class="footer__title footer__title--small">Theo dõi mạng xã hội</div>
+                <div class="footer__social">
+                    <a href="#" aria-label="Facebook">f</a>
+                    <a href="#" aria-label="Instagram">ig</a>
+                    <a href="#" aria-label="Zalo">z</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer__bottom">
+            <div class="container footer__bottom-inner">
+                Copyright © 2025 Hải Sản Phố Nướng. All Rights Reserved.
+            </div>
+        </div>
+    </footer>
+
+    <!-- JS dùng chung -->
+    <script src="></script>
+</body>
+
+</html>
